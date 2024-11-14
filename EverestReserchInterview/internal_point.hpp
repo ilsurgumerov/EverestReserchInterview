@@ -10,8 +10,8 @@ class InternalPoint {
 public:
     // Константы
     static constexpr double EPSILON = 1e-12;
-    static constexpr double EPSILONEND = 1e-12;
-    static constexpr double SIGMA = 1e-12;
+    static constexpr double EPSILONEND = 1e-8;
+    static constexpr double SIGMA = 1e-8;
     static constexpr double GAMMA = 0.1;
     static constexpr double INITIAL_X_VALUE = 0.1;
 

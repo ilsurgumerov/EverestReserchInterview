@@ -5,7 +5,7 @@ InternalPoint::InternalPoint() : numCols(0), numRows(0), stepIPM(0), lambda(0) {
 bool InternalPoint::readMpsFile(const std::string& filepath) {
     CoinMpsIO m;
     if (m.readMps(filepath.c_str(), "mps") != 0) {
-        std::cout << "Ошибка при чтении MPS файла\n";
+        std::cout << "Error reading MPS file\n";
         return false;
     }
 
@@ -47,7 +47,7 @@ void InternalPoint::IPM(int maxStep) {
 
     for (stepIPM = 0; stepIPM < maxStep; ++stepIPM) {
         if (oneStepIPM() || (norm(r) < EPSILONEND && optimalityCondition())) {
-            std::cout << stepIPM << " шагов\n";
+            std::cout << stepIPM << " steps\n";
             break;
         }
     }
@@ -95,11 +95,11 @@ bool InternalPoint::findLambda() {
     {
         if (norm(r) < EPSILON)   // r == 0
             if (countZeros == numCols) {    // s == 0
-                std::cout << "Решение найдено при s == 0" << "\n";
+                std::cout << "The solution was found at s == 0" << "\n";
                 return false;
             }
             else {                          // s > 0
-                std::cout << "Нет решений" << "\n";
+                std::cout << "No solutions" << "\n";
                 return false;
             }
         else                     // r != 0
@@ -121,7 +121,7 @@ bool InternalPoint::optimalityCondition() {
 }
 
 void InternalPoint::printX() {
-    std::cout << "Вектор X:\n" << x << "\n\n";
+    std::cout << "\nVector X:\n" << x << "\n";
 }
 
 double InternalPoint::norm(const Eigen::VectorXd& y) {
